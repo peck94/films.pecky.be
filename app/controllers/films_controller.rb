@@ -56,7 +56,7 @@ class FilmsController < ApplicationController
   def destroy
     @film.destroy
     respond_to do |format|
-      format.html { redirect_to films_url, notice: 'De film is verwijderd.' }
+      format.html { redirect_to root_path, notice: 'De film is verwijderd.' }
       format.json { head :no_content }
     end
   end
@@ -65,7 +65,7 @@ class FilmsController < ApplicationController
     imdb_id = params[:id]
     movie = Imdb::Movie.new(imdb_id)
 
-    @film = Film.new(titel: movie.title, synopsis: movie.plot_synopsis, gezien: false, rating: movie.rating/2,
+    @film = Film.new(titel: movie.title, synopsis: movie.plot_summary, gezien: false, rating: movie.rating/2,
                     image: movie.poster, imdb: movie.url, trailer: movie.trailer_url)
     respond_to do |format|
       if @film.save

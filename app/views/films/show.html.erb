@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<img src="<%= @film.image %>" style="float: left">
-
-<h1><%= @film.titel %> <%= raw "&#10017;" * @film.rating %></h1>
-
-<p>
-  <%= @film.synopsis %>
-</p>
+<div class="row">
+  <div class="col">
+    <img src="<%= @film.image %>" style="float: left; width: 182px; height: 268px">
+    <h1><%= @film.titel %> <%= raw "&#10017;" * @film.rating %></h1>
+    <p>
+      <%= @film.synopsis %>
+    </p>
+  </div>
+</div>
 
 <p style="text-align: right">
   <%= @film.gezien ? "&#10004; We hebben deze film al gezien.".html_safe : "&#10008; We hebben deze film nog niet gezien!".html_safe %>
