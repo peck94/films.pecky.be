@@ -10,7 +10,7 @@
         <h5 class="mb-1"><%= movie.title %></h5>
         <small>
           <% if not movie.rating.nil? %>
-              <%= raw "&#10017;" * (movie.rating / 2) %>
+              <%= raw "&#10017;" * ((movie.rating-1) / 2) %>
           <% end %>
           &nbsp;
           <%= movie.year %>
