@@ -8,7 +8,9 @@ class SearchController < ApplicationController
       @results = Imdb::Search.new(@query).movies
 
       @@query = @query.dup
-      @@results_cache = @results.dup
+
+      @@results_cache.clear
+      @results.each{|movie| @@results_cache << movie.dup}
     else
       @query = @@query
       @results = @@results_cache
