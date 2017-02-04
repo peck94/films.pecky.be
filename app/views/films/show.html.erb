@@ -8,14 +8,12 @@
   <%= @film.synopsis %>
 </p>
 
-<p>
+<p style="text-align: right">
   <%= @film.gezien ? "&#10004; We hebben deze film al gezien.".html_safe : "&#10008; We hebben deze film nog niet gezien!".html_safe %>
 </p>
 
-<p>
-  <%= link_to 'IMDb', @film.imdb %> |
-  <%= link_to 'Trailer', @film.trailer %>
-</p>
-
-<%= link_to 'Bewerken', edit_film_path(@film) %> |
-<%= link_to 'Terug naar filmlijst', films_path %>
+<div class="list-group">
+  <%= link_to 'IMDb pagina', @film.imdb, class: 'list-group-item list-group-item-action' %>
+  <%= link_to 'Trailer', @film.trailer, class: 'list-group-item list-group-item-action' %>
+  <%= link_to 'Details bewerken', edit_film_path(@film), class: 'list-group-item list-group-item-action' %>
+</div>
