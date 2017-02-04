@@ -1,17 +1,22 @@
 <h1>Zoekresultaten voor <%= @query %></h1>
 
 <p>Aantal resultaten: <%= @results.movies.size %></p>
-<p>Pagina <%= @start / @length %> van <%= (@results.movies.size / @length).ceil %></p>
+<p>Pagina <%= (@start / @length) + 1 %> van <%= (@results.movies.size / @length).ceil %></p>
 
 <div class="list-group">
 <% @results.movies[@start, @length].each do |movie| %>
     <%= link_to '/import/' + movie.id, class: 'list-group-item list-group-item-action flex-column align-items-start' do %>
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= movie.title %></h5>
-        <small><%= movie.year %></small>
+        <small>
+          <% if not movie.rating.nil? %>
+              <%= raw "&#10017;" * (movie.rating / 2) %>
+          <% end %>
+          &nbsp;
+          <%= movie.year %>
+        </small>
       </div>
       <p class="mb-1"><%= movie.plot_summary %></p>
-      <small><a href="<%= movie.url %>" target="_blank">IMDb pagina</a></small>
     <% end %>
 <% end %>
 </div>
