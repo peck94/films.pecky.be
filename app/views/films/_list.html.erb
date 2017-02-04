@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>Titel</th>
+    <th>Gezien</th>
+    <th>Rating</th>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @films.each do |film| %>
+      <tr>
+        <td><%= film.titel %></td>
+        <td><%= film.gezien ? "&#10004;".html_safe : "&#10008;".html_safe %></td>
+        <td><%= raw "&#10017;" * film.rating %></td>
+        <td><%= link_to 'Details', film %></td>
+        <td><%= link_to 'Trailer', film.trailer %></td>
+        <td><%= link_to 'Bewerken', edit_film_path(film) %></td>
+        <td><%= link_to 'Verwijderen', film, method: :delete, data: { confirm: 'Weet je het zeker?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
