@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_area :titel %>
+    <%= f.text_field :titel %>
   </div>
 
   <div class="field">
@@ -24,22 +24,23 @@
   </div>
 
   <div class="field">
-    <%= f.number_field :rating %>
+    <%= f.number_field :rating, label: 'Jodensterren (op 5)' %>
   </div>
 
   <div class="field">
-    <%= f.text_area :image %>
+    <%= f.text_field :image, label: 'Afbeelding' %>
   </div>
 
   <div class="field">
-    <%= f.text_area :imdb %>
+    <%= f.text_field :imdb, label: 'IMDb pagina' %>
   </div>
 
   <div class="field">
-    <%= f.text_area :trailer %>
+    <%= f.text_field :trailer %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions btn-group">
+    <%= f.submit 'Opslaan', class: 'btn btn-primary' %>
+    <%= link_to 'Annuleren', film, class: 'btn btn-warning' %>
   </div>
 <% end %>
