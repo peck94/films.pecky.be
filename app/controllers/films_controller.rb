@@ -61,6 +61,23 @@ class FilmsController < ApplicationController
     end
   end
 
+  def import
+    imdb_id = params[:id]
+    movie = Imdb::Movie.new(imdb_id)
+
+    @film = Film.new(titel: movie.title, synopsis: movie.plot_synopsis, gezien: false, rating: movie.rating/2,
+                    image: movie.poster, imdb: movie.url, trailer: movie.trailer_url)
+    respond_to do |format|
+      if @film.save
+        format.html { redirect_to @film, notice: 'De gegevens van deze film zijn overgenomen van IMDb.' }
+        format.json { render :show, status: :created, location: @film }
+      else
+        format.html { render :new }
+        format.json { render json: @film.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_film
