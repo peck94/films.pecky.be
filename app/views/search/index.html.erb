@@ -21,13 +21,21 @@
 <% end %>
 </div>
 
-<% if @results.movies.size > @length %>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Begin</a></li>
-    <li class="page-item"><a class="page-link <%= @start > 0 ? 'disabled' : '' %>" href="#">Vorige</a></li>
-    <li class="page-item"><a class="page-link <%= @start + @length - 1 >= @results.movies.size ? 'disabled' : '' %>" href="#">Volgende</a></li>
-    <li class="page-item"><a class="page-link" href="#">Einde</a></li>
-  </ul>
-</nav>
-<% end %>
+<div class="container">
+  <% if @results.movies.size > @length %>
+  <nav>
+    <ul class="pagination">
+      <% if @start > 0 %>
+        <li class="page-item"><%= link_to 'Begin', { controller: :search, action: :index, q: @query }, class: 'page-link' %></li>
+      <% end %>
+      <% if @start >= @length %>
+        <li class="page-item"><%= link_to 'Vorige', { controller: :search, action: :index, q: @query, start: @start - @length }, class: 'page-link' %></li>
+      <% end %>
+      <% if @start <= @results.movies.size - @length %>
+        <li class="page-item"><%= link_to 'Volgende', { controller: :search, action: :index, q: @query, start: @start + @length }, class: 'page-link' %></li>
+        <li class="page-item"><%= link_to 'Einde', { controller: :search, action: :index, q: @query, start: @results.movies.size - @length }, class: 'page-link' %></li>
+      <% end %>
+    </ul>
+  </nav>
+  <% end %>
+</div>
