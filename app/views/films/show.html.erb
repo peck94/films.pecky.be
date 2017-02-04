@@ -13,7 +13,8 @@
 </p>
 
 <div class="list-group">
-  <%= link_to 'IMDb pagina', @film.imdb, class: 'list-group-item list-group-item-action' %>
-  <%= link_to 'Trailer', @film.trailer, class: 'list-group-item list-group-item-action' %>
+  <%= link_to 'IMDb pagina', @film.imdb, class: 'list-group-item list-group-item-info' %>
+  <%= link_to 'Trailer', @film.trailer, class: 'list-group-item list-group-item-info' %>
   <%= link_to 'Details bewerken', edit_film_path(@film), class: 'list-group-item list-group-item-action' %>
+  <%= link_to 'Verwijderen', @film, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'list-group-item list-group-item-danger' %>
 </div>
