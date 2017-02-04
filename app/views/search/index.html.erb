@@ -1,10 +1,10 @@
 <h1>Zoekresultaten voor <%= @query %></h1>
 
-<p>Aantal resultaten: <%= @results.movies.size %></p>
-<p>Pagina <%= (@start / @length) + 1 %> van <%= (@results.movies.size / @length).ceil %></p>
+<p>Aantal resultaten: <%= @results.size %></p>
+<p>Pagina <%= (@start / @length) + 1 %> van <%= (@results.size / @length).ceil %></p>
 
 <div class="list-group">
-<% @results.movies[@start, @length].each do |movie| %>
+<% @results[@start, @length].each do |movie| %>
     <%= link_to '/import/' + movie.id, class: 'list-group-item list-group-item-action flex-column align-items-start' do %>
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1"><%= movie.title %></h5>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="container">
-  <% if @results.movies.size > @length %>
+  <% if @results.size > @length %>
   <nav>
     <ul class="pagination">
       <% if @start > 0 %>
@@ -31,9 +31,9 @@
       <% if @start >= @length %>
         <li class="page-item"><%= link_to 'Vorige', { controller: :search, action: :index, q: @query, start: @start - @length }, class: 'page-link' %></li>
       <% end %>
-      <% if @start <= @results.movies.size - @length %>
+      <% if @start <= @results.size - @length %>
         <li class="page-item"><%= link_to 'Volgende', { controller: :search, action: :index, q: @query, start: @start + @length }, class: 'page-link' %></li>
-        <li class="page-item"><%= link_to 'Einde', { controller: :search, action: :index, q: @query, start: @results.movies.size - @length }, class: 'page-link' %></li>
+        <li class="page-item"><%= link_to 'Einde', { controller: :search, action: :index, q: @query, start: @results.size - @length }, class: 'page-link' %></li>
       <% end %>
     </ul>
   </nav>
