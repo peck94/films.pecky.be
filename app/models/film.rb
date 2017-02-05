@@ -27,6 +27,6 @@ class Film < ApplicationRecord
   end
 
   def self.convert_rating(imdb_rating)
-    return ((imdb_rating - 1)/9 * 5).round
+    return [0, ((imdb_rating - 1)/9 * 5).round].max
   end
 end
