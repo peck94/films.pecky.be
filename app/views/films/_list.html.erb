@@ -1,27 +1,31 @@
-<table class="table">
-  <thead>
-  <tr>
-    <th>Titel</th>
-    <th>Gezien</th>
-    <th>Rating</th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @films.each do |film| %>
-      <tr>
-        <td><%= link_to film.titel, film %></td>
-        <td><%= film.gezien ? "&#10004;".html_safe : "&#10008;".html_safe %></td>
-        <td><%= raw "&#10017;" * film.rating %></td>
-        <td>
-          <div class="btn-group">
-            <%= link_to "&#9991;".html_safe, film.trailer, class: 'btn btn-sm btn-primary', title: 'Trailer bekijken' %>
-            <%= link_to "&#9998;".html_safe, edit_film_path(film), class: 'btn btn-sm btn-primary', title: 'Details bewerken' %>
-            <%= link_to "&#10006;".html_safe, film, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'btn btn-sm btn-danger', title: 'Verwijderen' %>
+<div class="container">
+<% @films.each_with_index do |film, index| %>
+    <% if index % 3 == 0 %>
+      <div class="row">
+    <% end %>
+          <div class="col-lg">
+            <div class="card" style="width: 20rem; float: left">
+              <%= link_to film do %>
+                <img class="card-img-top" src="<%= film.image %>" width="100%" height="25%">
+              <% end %>
+              <div class="card-block">
+                <h4 class="card-title"><%= film.titel %> <%= raw "&#10017;" * film.rating %></h4>
+                <% if film.gezien %>
+                    <p class="card-text">&#10004; We hebben deze film al gezien.</p>
+                <% else %>
+                    <p class="card-text">&#10008; We hebben deze film nog niet gezien!</p>
+                <% end %>
+                <p class="card-text"><%= film.synopsis %></p>
+                <div class="btn-group">
+                  <%= link_to "&#9991;".html_safe, film.trailer, class: 'btn btn-sm btn-primary', title: 'Trailer bekijken' %>
+                  <%= link_to "&#9998;".html_safe, edit_film_path(film), class: 'btn btn-sm btn-primary', title: 'Details bewerken' %>
+                  <%= link_to "&#10006;".html_safe, film, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'btn btn-sm btn-danger', title: 'Verwijderen' %>
+                </div>
+              </div>
+            </div>
           </div>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    <% if index % 3 == 2 %>
+        </div>
+    <% end %>
+<% end %>
+</div>
