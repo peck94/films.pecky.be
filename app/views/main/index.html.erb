@@ -10,6 +10,33 @@
   </div>
 </div>
 
+<%= form_tag("/", method: "get", class: "form-inline my-2 my-lg-0") do %>
 <div class="container">
-  <%= render "films/list" %>
+  <div class="row">
+    <div class="col col-lg-2">
+      <%= label_tag(:gezien, "Status:") %>
+    </div>
+    <div class="col-12 col-md-auto">
+      <%= select_tag(:gezien, options_for_select([['Allemaal', 0], ['Gezien', 1], ['Nog niet gezien', 2]], @gezien), class: 'form-control') %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-2">
+      <%= label_tag(:rating, "Rating:") %>
+    </div>
+    <div class="col-12 col-md-auto">
+      <%= select_tag(:rating, options_for_select(1..5, @rating), class: 'form-control') %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="btn-group">
+        <%= submit_tag("Filteren", class: "btn btn-outline-success my-2 my-sm-0") %>
+        <%= link_to "Filter verwijderen", root_path, class: "btn btn-outline-primary my-2 my-sm-0" %>
+      </div>
+    </div>
+  </div>
 </div>
+<% end %>
+
+<%= render "films/list" %>
