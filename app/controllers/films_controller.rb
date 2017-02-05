@@ -65,7 +65,7 @@ class FilmsController < ApplicationController
     imdb_id = params[:id]
     movie = Imdb::Movie.new(imdb_id)
 
-    @film = Film.new(titel: movie.title, synopsis: movie.plot_summary, gezien: false, rating: (5*(movie.rating-1)/9).ceil,
+    @film = Film.new(titel: movie.title, synopsis: movie.plot_summary, gezien: false, rating: Film.convert_rating(movie.rating),
                     image: movie.poster, imdb: movie.url, trailer: movie.trailer_url)
     respond_to do |format|
       if @film.save
