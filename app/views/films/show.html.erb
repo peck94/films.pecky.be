@@ -14,6 +14,13 @@
   <%= @film.gezien ? "&#10004; We hebben deze film al gezien.".html_safe : "&#10008; We hebben deze film nog niet gezien!".html_safe %>
 </p>
 
+<% if not @film.comments.blank? %>
+<p>
+  <strong>Opmerkingen:</strong>
+  <%= @film.comments %>
+</p>
+<% end %>
+
 <div class="list-group">
   <%= link_to 'IMDb pagina', @film.imdb, class: 'list-group-item list-group-item-info' %>
   <%= link_to 'Trailer', @film.trailer, class: 'list-group-item list-group-item-info' %>

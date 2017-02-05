@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170204165354) do
+ActiveRecord::Schema.define(version: 20170205010040) do
 
   create_table "films", force: :cascade do |t|
     t.text     "titel"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170204165354) do
     t.text     "trailer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "comments"
   end
 
 end
