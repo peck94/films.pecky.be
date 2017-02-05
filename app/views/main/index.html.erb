@@ -10,6 +10,8 @@
   </div>
 </div>
 
+<p>Aantal films in deze lijst: <%= @films.size %></p>
+
 <%= form_tag("/", method: "get", class: "form-inline my-2 my-lg-0") do %>
 <div class="container">
   <div class="row">
@@ -25,7 +27,7 @@
       <%= label_tag(:rating, "Rating:") %>
     </div>
     <div class="col-12 col-md-auto">
-      <%= select_tag(:rating, options_for_select(1..5, @rating), class: 'form-control') %>
+      <%= select_tag(:rating, options_for_select([['Allemaal', -1]].concat([0,1,2,3,4,5]), @rating), class: 'form-control') %>
     </div>
   </div>
   <div class="row">

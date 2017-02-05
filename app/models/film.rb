@@ -8,10 +8,21 @@ class Film < ApplicationRecord
   end
 
   def self.find_by_filter(params)
-    if params[:gezien].to_i == 0
-      return Film.where(rating: params[:rating])
+    @gezien = params[:gezien].to_i
+    @rating = params[:rating].to_i
+
+    if @gezien == 0
+      if @rating < 0
+        return Film.all
+      else
+        return Film.where(rating: params[:rating])
+      end
     else
-      return Film.where(rating: params[:rating], gezien: params[:gezien].to_i == 1)
+      if @rating < 0
+        return Film.where(gezien: params[:gezien].to_i == 1)
+      else
+        return Film.where(rating: params[:rating], gezien: params[:gezien].to_i == 1)
+      end
     end
   end
 end
