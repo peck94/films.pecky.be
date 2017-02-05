@@ -15,7 +15,7 @@
                 <% else %>
                     <p class="card-text">&#10008; We hebben deze film nog niet gezien!</p>
                 <% end %>
-                <p class="card-text"><%= film.synopsis %></p>
+                <p class="card-text"><%= truncate(film.synopsis, length: 256) %></p>
                 <div class="btn-group">
                   <%= link_to "&#9991;".html_safe, film.trailer, class: 'btn btn-sm btn-primary', title: 'Trailer bekijken' %>
                   <%= link_to "&#9998;".html_safe, edit_film_path(film), class: 'btn btn-sm btn-primary', title: 'Details bewerken' %>
